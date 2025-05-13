@@ -24,6 +24,120 @@
     <meta name="twitter:image" content="https://opengraph.b-cdn.net/production/images/e8041435-27af-4318-ab70-9631ab1ad561.png?token=c9yZ8VaA1-SnJrNhL-KKlocuffUB_izM51gvs8W-V1E&height=969&width=1200&expires=33279090266">
 
     <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --text-black: #000000;
+        }
+        
+        /* Page-specific styles */
+        .main-content {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 0;
+        }
+
+        .content-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .text-content {
+            font-size: clamp(1.125rem, 2vw, 1.25rem);
+            line-height: 1.6;
+            margin-top: 2rem;
+        }
+
+        .text-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .text-content a {
+            color: var(--text-black);
+            text-decoration: none;
+            position: relative;
+            padding-bottom: 2px;
+            font-weight: 600;
+        }
+
+        .text-content a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--text-black);
+            transition: width 0.3s ease;
+        }
+
+        .text-content a:hover::after {
+            width: 100%;
+        }
+
+        .attribution {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-top: 3rem;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 8vw, 4rem);
+            font-weight: normal;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            font-family: 'Replica', sans-serif;
+            color: var(--text-black);
+        }
+
+        /* Footer styles */
+        .footer {
+            width: 100%;
+            padding: 2rem;
+            background: white;
+        }
+
+        .footer-nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-nav a {
+            color: var(--text-black);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 2rem 0;
+            }
+
+            .content-container {
+                padding: 1.5rem;
+            }
+
+            .text-content {
+                font-size: 1rem;
+            }
+
+            .attribution {
+                margin-top: 2rem;
+            }
+
+            .footer-nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <main class="main-content">
@@ -48,7 +162,6 @@
                 <li><a href="index.html">PROMPTS & PROVENANCE</a></li>
                 <li><a href="https://www.labiennale.org/en/news/biennale-architettura-2025-intelligens-natural-artificial-collective" target="_blank">@ BIENNALE D'ARCHITETTURA 2025</a></li>
                 <li><a href="https://www.intermediations.xyz" target="_blank">BY iNTERMEDIATIONS</a></li>
-
             </ul>
         </nav>
     </footer>

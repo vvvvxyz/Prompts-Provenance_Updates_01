@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layer Comparison Animation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff; /* Light gray background */
+        }
+
+        .carousel-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Changed from center to align with titles */
+            min-height: 80vh; /* Reduced from 100vh */
+            perspective: 2000px;
+            gap: 8rem; /* Reduced from 10rem */
+            padding: 2rem 4rem; /* Reduced and made consistent with main layout */
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: #ffffff; /* Matching background */
+        }
+
+        .carousel {
+            position: relative;
+            width: 45%;
+            height: 400px;
+            transform-style: preserve-3d;
+            margin-top: 0; /* Removed extra margin */
+        }
+
+        .carousel-items {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 1.5s ease;
+        }
+
+        .carousel-item {
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            left: 50%;
+            top: 50%;
+            transform-origin: center;
+            margin-left: -140px;
+            margin-top: -140px;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .carousel-item figcaption {
+            position: absolute;
+            bottom: -2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: auto;
+            padding: 4px 8px;
+            background: #F0F3F3;
+            color: black;
+            font-family: 'Replica', sans-serif;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            white-space: nowrap;
+            opacity: 1; /* Always visible */
+        }
+
+        .carousel-item figcaption::before {
+            content: attr(data-number) " ";  /* Will use the number from data attribute */
+            color: #1A83F3;
+            font-style: normal;
+        }
+
+        .location-title {
+            text-align: left;
+            font-size: 1rem;
+            color: #333;
+            font-family: 'Replica', sans-serif;
+            margin: 0 0 2rem 0; /* Added bottom margin */
+            position: relative;
+            left: 0;
+            top: 0;
+        }
+
+        /* Calculate angles for 7 items (360/7 ≈ 51.43 degrees between each item) */
+        
+        /* Large screens */
+        @media (min-width: 1440px) {
+            .carousel-container {
+                gap: 12rem;
+            }
+
+            .carousel {
+                width: 40%;
+                height: 400px;
+            }
+
+            .carousel-item {
+                width: 300px;
+                height: 300px;
+                margin-left: -150px;
+                margin-top: -150px;
+            }
+
+            /* Adjusted circle radius */
+            .carousel-item:nth-child(1) { transform: rotateY(0deg) translateZ(400px); }
+            .carousel-item:nth-child(2) { transform: rotateY(51.43deg) translateZ(400px); }
+            .carousel-item:nth-child(3) { transform: rotateY(102.86deg) translateZ(400px); }
+            .carousel-item:nth-child(4) { transform: rotateY(154.29deg) translateZ(400px); }
+            .carousel-item:nth-child(5) { transform: rotateY(205.72deg) translateZ(400px); }
+            .carousel-item:nth-child(6) { transform: rotateY(257.15deg) translateZ(400px); }
+            .carousel-item:nth-child(7) { transform: rotateY(308.58deg) translateZ(400px); }
+        }
+
+        /* Medium screens */
+        @media (max-width: 1024px) {
+            .carousel-container {
+                flex-direction: column;
+                gap: 6rem; /* Reduced from 10rem */
+                padding: 2rem;
+            }
+
+            .carousel {
+                width: 100%;
+                margin-bottom: 4rem; /* Added space between carousels */
+            }
+
+            .location-title {
+                margin-bottom: 3rem; /* Increased for mobile */
+            }
+
+            .carousel-item {
+                width: 240px;
+                height: 240px;
+                margin-left: -120px;
+                margin-top: -120px;
+            }
+
+            /* Adjusted circle radius */
+            .carousel-item:nth-child(1) { transform: rotateY(0deg) translateZ(300px); }
+            .carousel-item:nth-child(2) { transform: rotateY(51.43deg) translateZ(300px); }
+            .carousel-item:nth-child(3) { transform: rotateY(102.86deg) translateZ(300px); }
+            .carousel-item:nth-child(4) { transform: rotateY(154.29deg) translateZ(300px); }
+            .carousel-item:nth-child(5) { transform: rotateY(205.72deg) translateZ(300px); }
+            .carousel-item:nth-child(6) { transform: rotateY(257.15deg) translateZ(300px); }
+            .carousel-item:nth-child(7) { transform: rotateY(308.58deg) translateZ(300px); }
+        }
+
+        /* Small screens */
+        @media (max-width: 768px) {
+            .carousel-container {
+                gap: 4rem;
+                padding: 1rem;
+            }
+
+            .carousel {
+                margin-bottom: 3rem;
+            }
+
+            .carousel-item {
+                width: 200px;
+                height: 200px;
+                margin-left: -100px;
+                margin-top: -100px;
+            }
+
+            /* Adjusted circle radius */
+            .carousel-item:nth-child(1) { transform: rotateY(0deg) translateZ(250px); }
+            .carousel-item:nth-child(2) { transform: rotateY(51.43deg) translateZ(250px); }
+            .carousel-item:nth-child(3) { transform: rotateY(102.86deg) translateZ(250px); }
+            .carousel-item:nth-child(4) { transform: rotateY(154.29deg) translateZ(250px); }
+            .carousel-item:nth-child(5) { transform: rotateY(205.72deg) translateZ(250px); }
+            .carousel-item:nth-child(6) { transform: rotateY(257.15deg) translateZ(250px); }
+            .carousel-item:nth-child(7) { transform: rotateY(308.58deg) translateZ(250px); }
+        }
+
+        /* Ensure both carousels have the same title positioning */
+        #guyanaCarousel, #parisCarousel {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1.5s ease;
+            margin-top: 4rem; /* Add space for title */
+        }
+
+        /* Consistent spacing for both titles */
+        .carousel h3.location-title {
+            position: relative;
+            top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <!-- Georgetown Carousel -->
+        <div class="carousel">
+            <h3 class="location-title">Georgetown, Guyana</h3>
+            <div class="carousel-items" id="guyanaCarousel">
+         
+                <figure class="carousel-item" data-number="01">
+                    <img src="Case_Study_Biennale_Panels/Guyana/01_Mechanical Sight_Guyana.png" alt="Mechanical Sight">
+                    <figcaption>Mechanical Sight</figcaption>
+                </figure>
+                <figure class="carousel-item" data-number="02">
+                    <img src="Case_Study_Biennale_Panels/Guyana/02_Tokenized Sight_Guyana.png" alt="Tokenized Sight">
+                    <figcaption>Tokenized Sight</figcaption>
+                </figure>
+                <figure class="carousel-item" data-number="03">
+                    <img src="Case_Study_Biennale_Panels/Guyana/03_Tokenized Sight_Guyana_Isometric.png" alt="Tokenized Sight Isometric">
+                    <figcaption>Tokenized Sight (Isometric)</figcaption>
+                </figure>
+                <figure class="carousel-item" data-number="04">
+                    <img src="Case_Study_Biennale_Panels/Guyana/04_Semantic Sight_Detailed Guyana.png" alt="Semantic Sight">
+                    <figcaption>Semantic Sight</figcaption>
+                </figure>
+                <figure class="carousel-item" data-number="05">
+                    <img src="Case_Study_Biennale_Panels/Guyana/05_Re-tokenized Sight_Guyana.png" alt="Re-tokenized Sight">
+                    <figcaption>Re-tokenized Sight</figcaption>
+                </figure>
+                <figure class="carousel-item" data-number="06">
+                    <img src="Case_Study_Biennale_Panels/Guyana/06_Computational Sight_Guyana_Isometric.png" alt="Computational Sight Isometric">
+                    <figcaption>Computational Sight (Isometric)</figcaption>
+                </figure>
+                <figure class="carousel-item" data-number="07">
+                    <img src="Case_Study_Biennale_Panels/Guyana/07_Computational Sight_Guyana_Detailed.png" alt="Computational Sight Detailed">
+                    <figcaption>Computational Sight (Detailed)</figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <!-- Paris Carousel -->
+        <div class="carousel">
+            <h3 class="location-title">Paris, France</h3>
+            <div class="carousel-items" id="parisCarousel">
+          
+                <figure class="carousel-item" data-number="01">
+                    <img src="Case_Study_Biennale_Panels/Paris/01_Mechanical Sight_Paris.png" alt="Mechanical Sight">
+                    <figcaption>Mechanical Sight</figcaption>
+                </figure>
+                <figure class="carousel-item" data-number="02">
+                    <img src="Case_Study_Biennale_Panels/Paris/02_Tokenized Sight_Paris.png" alt="Tokenized Sight">
+                    <figcaption>Tokenized Sight</figcaption>
+                </figure>
+                <figure class="carousel-item" data-number="03">
+                    <img src="Case_Study_Biennale_Panels/Paris/03_Tokenized Sight_Paris_Isometric.png" alt="Tokenized Sight Isometric">
+                    <figcaption>Tokenized Sight (Isometric)</figcaption>
+                </figure>
+                <figure class="carousel-item" data-number="04">
+                    <img src="Case_Study_Biennale_Panels/Paris/04_Semantic Sight_Detailed Paris.png" alt="Semantic Sight">
+                    <figcaption>Semantic Sight</figcaption>
+                </figure>
+                <figure class="carousel-item" data-number="05">
+                    <img src="Case_Study_Biennale_Panels/Paris/05_Re-tokenized Sight_Paris.png" alt="Re-tokenized Sight">
+                    <figcaption>Re-tokenized Sight</figcaption>
+                </figure>
+                <figure class="carousel-item" data-number="06">
+                    <img src="Case_Study_Biennale_Panels/Paris/06_Computational Sight_Paris_Isometric.png" alt="Computational Sight Isometric">
+                    <figcaption>Computational Sight (Isometric)</figcaption>
+                </figure>
+                <figure class="carousel-item" data-number="07">
+                    <img src="Case_Study_Biennale_Panels/Paris/07_Computational Sight_Paris_Detailed.png" alt="Computational Sight Detailed">
+                    <figcaption>Computational Sight (Detailed)</figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentRotation = 0;
+        let ROTATION_SPEED = -0.15; // Reduced from -0.3 to -0.15 for slower rotation
+        let animationFrame;
+
+        // Adjust rotation speed based on screen size
+        function updateRotationSpeed() {
+            if (window.innerWidth >= 1440) {
+                ROTATION_SPEED = -0.1; // Slower for large screens (was -0.2)
+            } else if (window.innerWidth >= 768) {
+                ROTATION_SPEED = -0.15; // Medium speed for medium screens (was -0.3)
+            } else {
+                ROTATION_SPEED = -0.2; // Faster for small screens (was -0.4)
+            }
+        }
+
+        function updateItemOpacity() {
+            const items = document.querySelectorAll('.carousel-item');
+            items.forEach((item, index) => {
+                // Calculate the current rotation of this item
+                const itemRotation = (currentRotation + (index * 51.43)) % 360;
+                
+                // Calculate opacity based on rotation
+                // Front items (near 0° or 360°) are most visible
+                const normalizedRotation = Math.abs((itemRotation + 360) % 360 - 180) / 180;
+                item.style.opacity = 1.0 + (normalizedRotation * 0.7); // Range from 0.3 to 1.0
+            });
+        }
+
+        function animate() {
+            currentRotation += ROTATION_SPEED; // Will now rotate clockwise
+            
+            const guyanaCarousel = document.querySelector('#guyanaCarousel');
+            const parisCarousel = document.querySelector('#parisCarousel');
+            
+            if (guyanaCarousel && parisCarousel) {
+                guyanaCarousel.style.transform = `rotateY(${currentRotation}deg)`;
+                parisCarousel.style.transform = `rotateY(${currentRotation}deg)`;
+                updateItemOpacity();
+            }
+            
+            animationFrame = requestAnimationFrame(animate);
+        }
+
+        // Initialize and handle window resize
+        document.addEventListener('DOMContentLoaded', () => {
+            updateRotationSpeed();
+            animate();
+        });
+
+        window.addEventListener('resize', updateRotationSpeed);
+
+        // Pause on hover with touch support
+        const container = document.querySelector('.carousel-container');
+        container.addEventListener('mouseenter', () => {
+            cancelAnimationFrame(animationFrame);
+        });
+
+        container.addEventListener('mouseleave', () => {
+            animationFrame = requestAnimationFrame(animate);
+        });
+
+        container.addEventListener('touchstart', () => {
+            cancelAnimationFrame(animationFrame);
+        });
+
+        container.addEventListener('touchend', () => {
+            setTimeout(() => {
+                animationFrame = requestAnimationFrame(animate);
+            }, 1000);
+        });
+
+        // Clean up
+        window.addEventListener('unload', () => {
+            cancelAnimationFrame(animationFrame);
+        });
+    </script>
+</body>
+</html>

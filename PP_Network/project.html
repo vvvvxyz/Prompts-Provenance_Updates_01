@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Project Analysis | Prompts & Provenance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="assets/css/graph.css" rel="stylesheet">
+    <link href="assets/css/project.css" rel="stylesheet">
+</head>
+<body>
+    <div class="split-container">
+        <!-- Left side: Scrolling content -->
+        <div class="content-section">
+            <nav class="project-nav">
+                <a href="index.html" class="nav-link">Back to Home</a>
+            </nav>
+            
+            <!-- Scrolly sections -->
+            <div class="scroll-sections">
+                <section class="scroll-section" data-graph-highlight="overview">
+                    <h2>Mapping the AI Semioscape</h2>
+                    <p>Our research reveals how AI models understand and connect places through language. 
+                    The network visualization shows how different locations, objects, and concepts are 
+                    interlinked in the model's understanding.</p>
+                </section>
+
+                <section class="scroll-section" data-graph-highlight="tokens">
+                    <h2>Understanding Token Patterns</h2>
+                    <p>Words highlighted in green show how the model breaks down language into subword tokens. 
+                    Notice how "georgetown" becomes "george##town", revealing the model's basic building blocks 
+                    of understanding.</p>
+                </section>
+
+                <section class="scroll-section" data-graph-highlight="paris-cluster">
+                    <h2>Paris Olympic Connections</h2>
+                    <p>In the Paris cluster, we see strong connections between "Arc de Triomphe" and 
+                    "Olympic". The model consistently associates these landmarks with the upcoming 
+                    2024 games, showing how temporal context influences place understanding.</p>
+                </section>
+
+                <section class="scroll-section" data-graph-highlight="guyana-market">
+                    <h2>Georgetown's Market Life</h2>
+                    <p>The Stabroek Market cluster reveals local transportation patterns, with "minibus" 
+                    and "license plate" frequently appearing together, indicating the model's grasp of 
+                    daily urban life in Georgetown.</p>
+                </section>
+
+                <section class="scroll-section" data-graph-highlight="cross-connections">
+                    <h2>Cross-Cultural Patterns</h2>
+                    <p>Examining connections between Paris and Georgetown reveals how the model understands 
+                    different types of urban spaces, from tourist landmarks to local markets.</p>
+                </section>
+            </div>
+        </div>
+
+        <!-- Right side: Fixed graph visualization -->
+        <div class="graph-section">
+            <div class="graph-container">
+                <svg></svg>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/intersection-observer"></script>
+    <script src="assets/js/shared.js"></script>
+    <script src="assets/js/project.js"></script>
+</body>
+</html> 

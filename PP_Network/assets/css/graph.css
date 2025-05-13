@@ -1,0 +1,194 @@
+@font-face {
+    font-family: 'Replica LL';
+    src: url('../fonts/ReplicaLLSub-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    font-family: 'Replica LL', sans-serif;
+    background-color: #0033FF;
+}
+
+.links line {
+    stroke: #6E8DE1;
+    stroke-opacity: 0.6;
+    transition: all 0.2s ease-out;
+}
+
+.links line.highlighted {
+    stroke: #0DF48C;
+    stroke-opacity: 0.9;
+}
+
+.nodes circle {
+    stroke: none;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    transition: all 0.2s ease-out;
+}
+
+.nodes circle:hover {
+    stroke: none;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    cursor: pointer;
+}
+
+.node text {
+    font-family: 'Replica LL', sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    fill: #ffffff;
+    text-shadow: 0 0 4px rgba(0,0,0,0.5);
+    transition: font-size 0.3s ease;
+    pointer-events: none;
+}
+
+.node.parent text {
+    font-weight: normal;
+}
+
+svg {
+    width: 100%;
+    height: 100vh;
+    background-color: #0033FF;
+}
+
+.node.parent circle {
+    stroke: none;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25));
+}
+
+.node.child circle {
+    stroke: none;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.2));
+}
+
+.node.child:hover circle {
+    stroke: none;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+}
+
+.node.highlighted circle {
+    stroke: none;
+    fill: #0DF48C !important;
+    filter: drop-shadow(0 8px 12px rgba(13,244,140,0.3));
+}
+
+.node.dimmed circle {
+    opacity: 0.2;
+}
+
+.node.dimmed text {
+    opacity: 0.2;
+}
+
+.tooltip {
+    position: fixed;
+    padding: 16px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid #0DF48C;
+    border-radius: 12px;
+    pointer-events: none;
+    font-family: 'Replica LL', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #0033FF;
+    box-shadow: 0 4px 6px rgba(13,244,140,0.2);
+    max-width: 320px;
+    z-index: 1000;
+    right: 24px;
+    top: 24px;
+}
+
+.tooltip strong {
+    font-family: 'Replica LL', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    color: #0033FF;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.tooltip em {
+    font-family: 'Replica LL', sans-serif;
+    color: #6E8DE1;
+    font-style: normal;
+    font-size: 13px;
+}
+
+.token-frame {
+    fill: rgba(13, 244, 140, 0.40);
+    stroke: #0DF48C;
+    stroke-width: 1px;
+    rx: 4px;
+    ry: 4px;
+    pointer-events: none;
+}
+
+.token-text {
+    fill: #ffffff;
+    dominant-baseline: middle;
+    font-family: 'Replica LL', sans-serif;
+    font-size: 11px;
+    pointer-events: none;
+}
+
+.label-group {
+    pointer-events: none;
+}
+
+/* Landing page layout */
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+header {
+    background-color: #0033FF;
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(110, 141, 225, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-title {
+    color: white;
+    font-size: 24px;
+    margin: 0;
+}
+
+.header-subtitle {
+    color: #6E8DE1;
+    font-size: 14px;
+    margin: 4px 0 0 0;
+}
+
+.graph-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background-color: #0033FF;
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.nav-link {
+    color: #6E8DE1;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+} 
